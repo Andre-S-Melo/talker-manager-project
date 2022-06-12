@@ -9,6 +9,6 @@ route.get('/', getAll);
 route.post('/', auth, talker, create);
 route.get('/:id', getById);
 route.put('/:id', auth, talker, update);
-route.delete('/:id', remove);
+route.delete('/:id', auth, remove);
 
 module.exports = route;
