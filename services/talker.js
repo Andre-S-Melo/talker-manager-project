@@ -18,7 +18,17 @@ const getById = async (id) => {
   return found;
 };
 
+const create = async (body) => {
+  const talkers = await getAll();
+  const newTalker = { id: talkers.length + 1, ...body };
+
+  // talkers.push(newTalker);
+  await data.write([...talkers, newTalker]);
+  return newTalker;
+};
+
 module.exports = {
   getAll,
   getById,
+  create,
 };

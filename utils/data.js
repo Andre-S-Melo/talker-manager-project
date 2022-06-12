@@ -10,15 +10,19 @@ const read = async () => {
   }
 };
 
-const write = async () => {
-  try {
-    const writingFile = JSON.stringify(await fs.writeFile('./talker.json'));
+// const write = async () => {
+//   try {
+//     const writingFile = JSON.stringify(await fs.writeFile('./talker.json'));
 
-    return writingFile;
-  } catch (err) {
-    console.log(err);
-  }
-};
+//     return writingFile;
+//   } catch (err) {
+//     console.log(err);
+//   }
+// };
+
+async function write(Talker) {
+  await fs.writeFile('./talker.json', JSON.stringify(Talker));
+}
 
 module.exports = {
   read,

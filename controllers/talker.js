@@ -21,7 +21,18 @@ const getById = async (req, res, next) => {
   }
 };
 
+const create = async (req, res, next) => {
+  try {
+    const newTalker = await talker.create(req.body);
+
+    return res.status(201).json(newTalker);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   getAll,
   getById,
+  create,
 };
