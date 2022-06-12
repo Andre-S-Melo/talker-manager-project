@@ -21,6 +21,16 @@ const getById = async (req, res, next) => {
   }
 };
 
+const search = async (req, res, next) => {
+  try {
+    const getBySearch = await talker.search(req.query);
+
+    return res.status(200).json(getBySearch);
+  } catch (err) {
+    next(err);
+  }
+};
+
 const create = async (req, res, next) => {
   try {
     const newTalker = await talker.create(req.body);
@@ -54,6 +64,7 @@ const remove = async (req, res, next) => {
 module.exports = {
   getAll,
   getById,
+  search,
   create,
   update,
   remove,

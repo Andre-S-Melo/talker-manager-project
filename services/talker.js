@@ -18,6 +18,16 @@ const getById = async (id) => {
   return found;
 };
 
+const search = async ({ q }) => {
+  const talkers = await getAll();
+  if (!q) return talkers;
+
+  const getBySearch = talkers.filter((talker) => talker.name.includes(q));
+  if (!getBySearch) return '[]';
+
+  return getBySearch;
+};
+
 const create = async (body) => {
   const talkers = await getAll();
   const newTalker = { id: talkers.length + 1, ...body };
@@ -46,6 +56,7 @@ const remove = async ({ id }) => {
 module.exports = {
   getAll,
   getById,
+  search,
   create,
   update,
   remove,
