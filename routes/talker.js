@@ -7,7 +7,7 @@ const route = express.Router();
 
 route.get('/', getAll);
 route.post('/', auth, talker, create);
-route.get('/search', search);
+route.get('/search', auth, search);
 route.get('/:id', getById);
 route.put('/:id', auth, talker, update);
 route.delete('/:id', auth, remove);
