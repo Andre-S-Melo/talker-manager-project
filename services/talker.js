@@ -27,8 +27,18 @@ const create = async (body) => {
   return newTalker;
 };
 
+const update = async ({ name, age, talk: { watchedAt, rate } }, { id }) => {
+  const talkers = await getAll();
+  const findTalker = talkers.findIndex((talker) => talker.id === (+id));
+
+  talkers[findTalker] = { ...talkers[findTalker], name, age, talk: { watchedAt, rate } };
+  await data.write(talkers);
+  return talkers[findTalker];
+};
+
 module.exports = {
   getAll,
   getById,
   create,
+  update,
 };

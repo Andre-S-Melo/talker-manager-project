@@ -31,8 +31,19 @@ const create = async (req, res, next) => {
   }
 };
 
+const update = async (req, res, next) => {
+  try {
+    const updatedTalker = await talker.update(req.body, req.params);
+
+    return res.status(200).json(updatedTalker);
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   create,
+  update,
 };
