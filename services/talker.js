@@ -36,9 +36,17 @@ const update = async ({ name, age, talk: { watchedAt, rate } }, { id }) => {
   return talkers[findTalker];
 };
 
+const remove = async ({ id }) => {
+  const talkers = await getAll();
+  const deleteTalker = talkers.filter((talker) => talker.id !== (+id));
+
+  await data.write(deleteTalker);
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
+  remove,
 };

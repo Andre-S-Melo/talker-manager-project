@@ -41,9 +41,20 @@ const update = async (req, res, next) => {
   }
 };
 
+const remove = async (req, res, next) => {
+  try {
+    await talker.remove(req.params);
+
+    return res.status(204).send();
+  } catch (err) {
+    next(err);
+  }
+};
+
 module.exports = {
   getAll,
   getById,
   create,
   update,
+  remove,
 };
