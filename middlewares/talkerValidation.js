@@ -46,7 +46,7 @@ const isValidWatchedAt = (req, _res, next) => {
 const isValidRate = (req, res, next) => {
   const { talk: { rate } } = req.body;
 
-  if (!rate) {
+  if (!Number.isInteger(rate)) {
     throw err(400, 'O campo "rate" é obrigatório');
   }
 
