@@ -57,7 +57,7 @@ const isValidRate = (req, res, next) => {
   next();
 };
 
-const talker = [
+const validTalker = [
   isValidName,
   isValidAge,
   isValidTalk,
@@ -66,5 +66,5 @@ const talker = [
 ];
 
 module.exports = {
-  talker,
+  validTalker,
 };

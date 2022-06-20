@@ -2,27 +2,23 @@ const fs = require('fs/promises');
 
 const read = async () => {
   try {
-    const fileContent = JSON.parse(await fs.readFile('./talker.json', 'utf-8'));
+    const readFile = JSON.parse(await fs.readFile('./talker.json', 'utf-8'));
 
-    return fileContent;
+    return readFile;
   } catch (err) {
-    console.log(err);
+    console.log(`Erro na leitura do arquivo: ${err.message}`);
   }
 };
 
-// const write = async () => {
-//   try {
-//     const writingFile = JSON.stringify(await fs.writeFile('./talker.json'));
+const write = async (newTalker) => {
+  try {
+    const writeFile = await fs.writeFile('./talker.json', JSON.stringify(newTalker));
 
-//     return writingFile;
-//   } catch (err) {
-//     console.log(err);
-//   }
-// };
-
-async function write(Talker) {
-  await fs.writeFile('./talker.json', JSON.stringify(Talker));
-}
+    return writeFile;
+  } catch (err) {
+    console.log(`Erro ao escrever o arquivo: ${err.message}`);
+  }
+};
 
 module.exports = {
   read,

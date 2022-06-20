@@ -8,14 +8,14 @@ const getAll = async () => {
   return talkers;
 };
 
-const getById = async (id) => {
-  const talkers = await data.read();
+const getById = async ({ id }) => {
+  const talkers = await getAll();
 
-  const found = talkers.find((talker) => talker.id === (+id));
+  const getTalker = talkers.find((talker) => talker.id === (+id));
 
-  if (!found) throw err(404, 'Pessoa palestrante não encontrada');
+  if (!getTalker) throw err(404, 'Pessoa palestrante não encontrada');
 
-  return found;
+  return getTalker;
 };
 
 const search = async ({ q }) => {
@@ -32,16 +32,15 @@ const create = async (body) => {
   const talkers = await getAll();
   const newTalker = { id: talkers.length + 1, ...body };
 
-  // talkers.push(newTalker);
   await data.write([...talkers, newTalker]);
   return newTalker;
 };
 
-const update = async ({ name, age, talk: { watchedAt, rate } }, { id }) => {
+const update = async ({ name, age, talk }, { id }) => {
   const talkers = await getAll();
   const findTalker = talkers.findIndex((talker) => talker.id === (+id));
 
-  talkers[findTalker] = { ...talkers[findTalker], name, age, talk: { watchedAt, rate } };
+  talkers[findTalker] = { ...talkers[findTalker], name, age, talk };
   await data.write(talkers);
   return talkers[findTalker];
 };

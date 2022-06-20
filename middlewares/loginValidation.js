@@ -22,7 +22,11 @@ const isValidPassword = (req, _res, next) => {
   next();
 };
 
-module.exports = {
+const validLogin = [
   isValidEmail,
   isValidPassword,
+];
+
+module.exports = {
+  validLogin,
 };

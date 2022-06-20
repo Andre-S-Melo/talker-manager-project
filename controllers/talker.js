@@ -12,10 +12,9 @@ const getAll = async (_req, res, next) => {
 
 const getById = async (req, res, next) => {
   try {
-    const { id } = req.params;
-    const found = await talker.getById(id);
+    const getTalker = await talker.getById(req.params);
 
-    return res.status(200).json(found);
+    return res.status(200).json(getTalker);
   } catch (err) {
     next(err);
   }
@@ -43,9 +42,9 @@ const create = async (req, res, next) => {
 
 const update = async (req, res, next) => {
   try {
-    const updatedTalker = await talker.update(req.body, req.params);
+    const editedTalker = await talker.update(req.body, req.params);
 
-    return res.status(200).json(updatedTalker);
+    return res.status(200).json(editedTalker);
   } catch (err) {
     next(err);
   }

@@ -1,15 +1,15 @@
 const express = require('express');
+const talker = require('../controllers/talker');
 const { auth } = require('../middlewares/authorization');
-const { talker } = require('../middlewares/talkerValidation');
-const { getAll, getById, create, update, remove, search } = require('../controllers/talker');
+const { validTalker } = require('../middlewares/talkerValidation');
 
 const route = express.Router();
 
-route.get('/', getAll);
-route.post('/', auth, talker, create);
-route.get('/search', auth, search);
-route.get('/:id', getById);
-route.put('/:id', auth, talker, update);
-route.delete('/:id', auth, remove);
+route.get('/', talker.getAll);
+route.post('/', auth, validTalker, talker.create);
+route.get('/search', auth, talker.search);
+route.get('/:id', talker.getById);
+route.put('/:id', auth, validTalker, talker.update);
+route.delete('/:id', auth, talker.remove);
 
 module.exports = route;
