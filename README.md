@@ -29,7 +29,12 @@ Back-end:
 
 ## Instalando as dependências do projeto
 
-> npm install
+Back-end:
+
+```
+npm install
+
+```
 
 ## Executando aplicação
 
