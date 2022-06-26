@@ -35,7 +35,6 @@ Back-end:
 npm install
 
 ```
-
 ## Executando aplicação
 
 -   Para rodar o back-end:
